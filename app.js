@@ -14,11 +14,12 @@ const PORT = process.env.PORT || 8000;
 
 
 
-const start = async () => {
+ const start = async () => {
    try {
-    mongoose.connect(process.env.MONGO_URL, {
+   await mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
     });
+      .then(() => console.log("ok")).catch(() => console.log("bad"))
     app.listen(PORT, () => console.log(`Server: http://localhost:${PORT}`));
    } catch (error) {
     console.log(error);
